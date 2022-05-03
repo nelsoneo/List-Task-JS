@@ -50,7 +50,7 @@ btnUpdateTask.addEventListener('click', (e) => {
         listTasks.replaceChild(li, tarefaAtual);
         alternarJanelaEdicao();
     } else {
-        alert('Elemento HTML não encontrado!');
+        alert('Tag HTML not found!');
     } 
 });
 
@@ -81,8 +81,8 @@ function gerarIdUnico() {
             contadorIds++;
 
             if(contadorIds >= qtdIdsDisponiveis) {
-                alert("Oops, ficamos sem IDS :/");
-                throw new Error("Acabou os IDs :/");
+                alert("Oops, we not more IDS :/");
+                throw new Error("Oops end IDs :/");
             }
         }
 
@@ -90,9 +90,14 @@ function gerarIdUnico() {
 }
 
 function adicionarTarefa(tarefa) {
-    let li = criarTagLI(tarefa);
+    console.log(tarefa);
+    if(tarefa.nome != "") {
+        let li = criarTagLI(tarefa);
     listTasks.appendChild(li);  
-    inputNewTask.value = '';  
+    inputNewTask.value = ''; 
+    } else {
+        alert("Your can type a new task")
+    }
 }
 
 function criarTagLI(tarefa) {
@@ -131,18 +136,18 @@ function editar(idTarefa) {
         inputTaskNameEdition.value = li.innerText;
         alternarJanelaEdicao();
     } else {
-        alert('Elemento HTML não encontrado!');
+        alert('Tag HTML not found!');
     }
 }
 
 function excluir(idTarefa) {
-    let confirmacao = window.confirm('Tem certeza que deseja excluir? ');
+    let confirmacao = window.confirm('You can trash the task? ');
     if(confirmacao) {
         let li = document.getElementById(''+ idTarefa + '');
         if(li) {
             listTasks.removeChild(li);
         } else {
-            alert('Elemento HTML não encontrado!');
+            alert('Tag HTML not found!');
         }
     }
 }
