@@ -48,13 +48,13 @@ body {
   cursor: pointer;
 }
 
-#listaTarefas {
+#listTasks {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-#listaTarefas li {
+#listTasks li {
   padding: 20px;
   background: #191818;
   border-radius: 12px;
@@ -105,7 +105,7 @@ body {
   display: block !important;
 }
 
-#janelaEdicaoFundo {
+#windowEditionBackground {
   position: fixed;
   top: 0;
   background-color: #000;
@@ -117,11 +117,11 @@ body {
   display: none;
 }
 
-#janelaEdicaoFundo.abrir {
+#windowEditionBackground.abrir {
  display: block !important;    
 }
 
-#janelaEdicaoBtnFechar {
+#windowEditionBtnClosed {
   position: absolute;
   top: -25px;
   right: -18px; 

@@ -1,45 +1,45 @@
-let inputNovaTarefa = document.querySelector('#inputNovaTarefa');
-let btnAddTarefa = document.querySelector('#btnAddTarefa');
-let listaTarefas = document.querySelector('#listaTarefas');
+let inputNewTask = document.querySelector('#inputNewTask');
+let btnAddTask = document.querySelector('#btnAddTask');
+let listTasks = document.querySelector('#listTasks');
 let janelaEdicao = document.querySelector('#janelaEdicao');
-let janelaEdicaoFundo = document.querySelector('#janelaEdicaoFundo');
-let janelaEdicaoBtnFechar = document.querySelector('#janelaEdicaoBtnFechar');
-let btnAtualizarTarefa = document.querySelector('#btnAtualizarTarefa');
-let idTarefaEdicao = document.querySelector('#idTarefaEdicao');
-let inputTarefaNomeEdicao = document.querySelector('#inputTarefaNomeEdicao');
+let windowEditionBackground = document.querySelector('#windowEditionBackground');
+let windowEditionBtnClosed = document.querySelector('#windowEditionBtnClosed');
+let btnUpdateTask = document.querySelector('#btnUpdateTask');
+let idTaskEdition = document.querySelector('#idTaskEdition');
+let inputTaskNameEdition = document.querySelector('#inputTaskNameEdition');
 const qtdIdsDisponiveis = Number.MAX_VALUE;
 
-inputNovaTarefa.addEventListener('keypress', (e) => {
+inputNewTask.addEventListener('keypress', (e) => {
 
     if(e.keyCode == 13) {
         let tarefa = {
-            nome: inputNovaTarefa.value,
+            nome: inputNewTask.value,
             id: gerarIdV2(),
         }
         adicionarTarefa(tarefa);
     }
 });
 
-janelaEdicaoBtnFechar.addEventListener('click', (e) => {
+windowEditionBtnClosed.addEventListener('click', (e) => {
     alternarJanelaEdicao();
 });
 
-btnAddTarefa.addEventListener('click', (e) => {
+btnAddTask.addEventListener('click', (e) => {
 
     let tarefa = {
-        nome: inputNovaTarefa.value,
+        nome: inputNewTask.value,
         id: gerarIdV2(),
     }
     adicionarTarefa(tarefa);
 });
 
-btnAtualizarTarefa.addEventListener('click', (e) => {
+btnUpdateTask.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let idTarefa = idTarefaEdicao.innerHTML.replace('#', '');
+    let idTarefa = idTaskEdition.innerHTML.replace('#', '');
 
     let tarefa = {
-        nome: inputTarefaNomeEdicao.value,
+        nome: inputTaskNameEdition.value,
         id: idTarefa
     }
 
@@ -47,7 +47,7 @@ btnAtualizarTarefa.addEventListener('click', (e) => {
 
     if(tarefaAtual) {
         let li = criarTagLI(tarefa);
-        listaTarefas.replaceChild(li, tarefaAtual);
+        listTasks.replaceChild(li, tarefaAtual);
         alternarJanelaEdicao();
     } else {
         alert('Elemento HTML não encontrado!');
@@ -65,7 +65,7 @@ function gerarIdV2() {
 function gerarIdUnico() {
 
     // debugger;
-    let itensDaLista = document.querySelector('#listaTarefas').children;
+    let itensDaLista = document.querySelector('#listTasks').children;
     let idsGerados = [];
 
     for(let i=0;i<itensDaLista.length;i++) {
@@ -91,8 +91,8 @@ function gerarIdUnico() {
 
 function adicionarTarefa(tarefa) {
     let li = criarTagLI(tarefa);
-    listaTarefas.appendChild(li);  
-    inputNovaTarefa.value = '';  
+    listTasks.appendChild(li);  
+    inputNewTask.value = '';  
 }
 
 function criarTagLI(tarefa) {
@@ -127,8 +127,8 @@ function criarTagLI(tarefa) {
 function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
     if(li) {
-        idTarefaEdicao.innerHTML = '#' + idTarefa;
-        inputTarefaNomeEdicao.value = li.innerText;
+        idTaskEdition.innerHTML = '#' + idTarefa;
+        inputTaskNameEdition.value = li.innerText;
         alternarJanelaEdicao();
     } else {
         alert('Elemento HTML não encontrado!');
@@ -140,7 +140,7 @@ function excluir(idTarefa) {
     if(confirmacao) {
         let li = document.getElementById(''+ idTarefa + '');
         if(li) {
-            listaTarefas.removeChild(li);
+            listTasks.removeChild(li);
         } else {
             alert('Elemento HTML não encontrado!');
         }
@@ -149,5 +149,5 @@ function excluir(idTarefa) {
 
 function alternarJanelaEdicao() {
     janelaEdicao.classList.toggle('abrir');
-    janelaEdicaoFundo.classList.toggle('abrir');
+    windowEditionBackground.classList.toggle('abrir');
 }
